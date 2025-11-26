@@ -140,7 +140,7 @@ class IpAddrAndPort
   #
   def initialize(spec, default_port=nil)
     raise ArgumentError.new("default_port must be a number") unless
-     default_port.nil? || default_port.kind_of?(Fixnum)
+     default_port.nil? || default_port.kind_of?(Integer)
 
     spec1, spec2 = spec.split(/-/, 2)
     @from=nil
@@ -1037,7 +1037,7 @@ module BGP
     attr_reader :last_updated
 
     def initialize(file)
-      raise Errno::ENOENT unless File.exists?(file)
+      raise Errno::ENOENT unless File.exist?(file)
       @file = file
       @last_updated = nil
     end
